@@ -39,10 +39,20 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
             if pind == len(pattern) - 1:
                 combined = " ".join(source[sind:])
                 result.append(combined)
-                print(result)
+                # print(result)
                 return result
             else:
-                pass
+                pind += 1
+                slocation = sind
+                while pattern[pind] != source[sind]:
+                    sind += 1
+
+                    if sind == len(source):
+                        return None
+
+                # print(sind, slocation)
+                result.append(" ".join(source[slocation:sind]))
+
 
         # 3) if we reached the end of the source but not the pattern
         elif sind == len(source):
@@ -61,8 +71,8 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
         # indicates the current thing it pattern doesn't match the current thing in
         # source
         else:
-            print(pattern[pind] + " " + source[sind])
-            print("No Match")
+            # print(pattern[pind] + " " + source[sind])
+            # print("No Match")
             return None
     return result
 
@@ -75,7 +85,9 @@ if __name__ == "__main__":
     assert match(["x", "_", "z"], ["x", "y", "z"]) == ["y"], "test 5 failed"
     assert match(["x", "_", "_"], ["x", "y", "z"]) == ["y", "z"], "test 6 failed"
     assert match(["%"], ["x", "y", "z"]) == ["x y z"], "test 7 failed"
-    assert match(["%"], ["x", "y", "z", "a", "b"]) == ["y z a b"], " extra test 7 failed"
+    assert match(["x", "%"], ["x", "y", "z", "a", "b"]) == ["y z a b"], " extra test 7 failed"
+    
+    
     assert match(["x", "%", "z"], ["x", "y", "z"]) == ["y"], "test 8 failed"
     assert match(["%", "z"], ["x", "y", "z"]) == ["x y"], "test 9 failed"
     assert match(["x", "%", "y"], ["x", "y", "z"]) == None, "test 10 failed"
