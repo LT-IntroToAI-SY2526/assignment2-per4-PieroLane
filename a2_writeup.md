@@ -12,9 +12,9 @@ This assignment is about learning and applying the while loop and iterating thro
 
 ## Reflection Questions
 1. What was difficult for you while completing the match function?
-
+It was difficult to find out when to use [] and when to use ().
 
 
 2. Explain how you could use the match function for extracting information from a movie database.
-
+It could help to match words with certain answers and what to return.
 
